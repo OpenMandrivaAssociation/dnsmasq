@@ -1,5 +1,5 @@
 Name:		dnsmasq
-Version:	2.38
+Version:	2.39
 Release:	%mkrel 1
 License:	GPL
 Group:		System/Servers
