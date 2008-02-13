@@ -1,11 +1,11 @@
 Name:		dnsmasq
-Version:	2.39
+Version:	2.41
 Release:	%mkrel 1
 License:	GPL
 Group:		System/Servers
 URL:		http://www.thekelleys.org.uk/dnsmasq
 Conflicts:	bind
-Source0:	http://www.thekelleys.org.uk/dnsmasq/%{name}-%{version}.tar.bz2
+Source0:	http://www.thekelleys.org.uk/dnsmasq/%{name}-%{version}.tar.gz
 Source1:    dnsmasq.sysconfig
 Source2:    dnsmasq.init
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
