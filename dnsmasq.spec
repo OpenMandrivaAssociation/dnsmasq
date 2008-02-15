@@ -1,6 +1,6 @@
 Name:		dnsmasq
 Version:	2.41
-Release:	%mkrel 1
+Release:	%mkrel 2
 License:	GPL
 Group:		System/Servers
 URL:		http://www.thekelleys.org.uk/dnsmasq
