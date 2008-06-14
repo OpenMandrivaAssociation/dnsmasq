@@ -1,6 +1,6 @@
 Name:		dnsmasq
-Version:	2.41
-Release:	%mkrel 2
+Version:	2.42
+Release:	%mkrel 1
 License:	GPL
 Group:		System/Servers
 URL:		http://www.thekelleys.org.uk/dnsmasq
@@ -14,12 +14,12 @@ Requires(preun):		rpm-helper
 Requires(post):         rpm-helper
 
 %description
-Dnsmasq is lightweight, easy to configure DNS forwarder and DHCP server. It 
+Dnsmasq is lightweight, easy to configure DNS forwarder and DHCP server. It
 is designed to provide DNS and, optionally, DHCP, to a small network. It can
-serve the names of local machines which are not in the global DNS. The DHCP 
+serve the names of local machines which are not in the global DNS. The DHCP
 server integrates with the DNS server and allows machines with DHCP-allocated
-addresses to appear in the DNS with names configured either in each host or 
-in a central configuration file. Dnsmasq supports static and dynamic DHCP 
+addresses to appear in the DNS with names configured either in each host or
+in a central configuration file. Dnsmasq supports static and dynamic DHCP
 leases and BOOTP for network booting of diskless machines.
 
 %prep
@@ -50,7 +50,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(-,root,root)
-%doc CHANGELOG COPYING FAQ doc.html setup.html 
+%doc CHANGELOG COPYING FAQ doc.html setup.html
 %{_initrddir}/%{name}
 %config(noreplace) %{_sysconfdir}/dnsmasq.conf
 %config(noreplace) %{_sysconfdir}/sysconfig/%{name}
