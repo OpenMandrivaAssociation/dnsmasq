@@ -1,18 +1,19 @@
+Summary:	A lightweight dhcp and caching nameserver
 Name:		dnsmasq
-Version:	2.52
+Version:	2.55
 Release:	%mkrel 1
 License:	GPLv2 or GPLv3
 Group:		System/Servers
 URL:		http://www.thekelleys.org.uk/dnsmasq
 Conflicts:	bind
-Source0:	http://www.thekelleys.org.uk/dnsmasq/%{name}-%{version}.tar.gz
+Source0:	http://www.thekelleys.org.uk/dnsmasq/%{name}-%{version}.tar.lzma
+BuildRequires:	dbus-devel
 Source1:	dnsmasq.sysconfig
 Source2:	dnsmasq.init
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
-Summary:	A lightweight dhcp and caching nameserver
 Requires:	%{name}-base = %{version}-%{release}
 Requires(preun):	rpm-helper
 Requires(post):	rpm-helper
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 Dnsmasq is lightweight, easy to configure DNS forwarder and DHCP server. It
@@ -42,7 +43,12 @@ scripts and global configuration files.
 
 %prep
 %setup -q
+
 %build
+#(tpg) enable dbus support
+sed -i 's|/\* #define HAVE_DBUS \*/|#define HAVE_DBUS|g' src/config.h
+
+%serverbuild
 %make
 
 %install
