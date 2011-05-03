@@ -1,7 +1,7 @@
 Summary:	A lightweight dhcp and caching nameserver
 Name:		dnsmasq
 Version:	2.57
-Release:	%mkrel 1
+Release:	%mkrel 2
 License:	GPLv2 or GPLv3
 Group:		System/Servers
 URL:		http://www.thekelleys.org.uk/dnsmasq
