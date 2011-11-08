@@ -1,6 +1,6 @@
 Summary:	A lightweight dhcp and caching nameserver
 Name:		dnsmasq
-Version:	2.58
+Version:	2.59
 Release:	%mkrel 1
 License:	GPLv2 or GPLv3
 Group:		System/Servers
@@ -53,15 +53,11 @@ sed -i 's|/\* #define HAVE_DBUS \*/|#define HAVE_DBUS|g' src/config.h
 
 %install
 rm -rf %{buildroot}
-install -m755 %{SOURCE2} -D %{buildroot}%{_initrddir}/%{name}
-install -m644 %{SOURCE1} -D %{buildroot}%{_sysconfdir}/sysconfig/%{name}
-
-install -m644 dnsmasq.conf.example -D %{buildroot}%{_sysconfdir}/dnsmasq.conf
-
-install -m755 -D src/dnsmasq %{buildroot}%{_sbindir}/dnsmasq
-#ln -sf ../../%{_initrddir}/%{name} %{buildroot}/%{_sbindir}/rcdnsmasq
-install -m644 man/dnsmasq.8 -D %{buildroot}%{_mandir}/man8/dnsmasq.8
-
+%__install -m755 %{SOURCE2} -D %{buildroot}%{_initrddir}/%{name}
+%__install -m644 %{SOURCE1} -D %{buildroot}%{_sysconfdir}/sysconfig/%{name}
+%__install -m644 dnsmasq.conf.example -D %{buildroot}%{_sysconfdir}/dnsmasq.conf
+%__install -m755 -D src/dnsmasq %{buildroot}%{_sbindir}/dnsmasq
+%__install -m644 man/dnsmasq.8 -D %{buildroot}%{_mandir}/man8/dnsmasq.8
 
 %clean
 rm -rf %{buildroot}
