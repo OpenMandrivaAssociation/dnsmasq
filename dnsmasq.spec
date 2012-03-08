@@ -1,7 +1,7 @@
 Summary:	A lightweight dhcp and caching nameserver
 Name:		dnsmasq
-Version:	2.59
-Release:	%mkrel 1
+Version:	2.60
+Release:	1
 License:	GPLv2 or GPLv3
 Group:		System/Servers
 URL:		http://www.thekelleys.org.uk/dnsmasq
@@ -13,7 +13,6 @@ Source2:	dnsmasq.init
 Requires:	%{name}-base = %{version}-%{release}
 Requires(preun):	rpm-helper
 Requires(post):	rpm-helper
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 Dnsmasq is lightweight, easy to configure DNS forwarder and DHCP server. It
@@ -52,15 +51,11 @@ sed -i 's|/\* #define HAVE_DBUS \*/|#define HAVE_DBUS|g' src/config.h
 %make
 
 %install
-rm -rf %{buildroot}
 %__install -m755 %{SOURCE2} -D %{buildroot}%{_initrddir}/%{name}
 %__install -m644 %{SOURCE1} -D %{buildroot}%{_sysconfdir}/sysconfig/%{name}
 %__install -m644 dnsmasq.conf.example -D %{buildroot}%{_sysconfdir}/dnsmasq.conf
 %__install -m755 -D src/dnsmasq %{buildroot}%{_sbindir}/dnsmasq
 %__install -m644 man/dnsmasq.8 -D %{buildroot}%{_mandir}/man8/dnsmasq.8
-
-%clean
-rm -rf %{buildroot}
 
 %post
 %_post_service %{name}
