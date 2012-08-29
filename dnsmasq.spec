@@ -1,18 +1,22 @@
 Summary:	A lightweight dhcp and caching nameserver
 Name:		dnsmasq
-Version:	2.61
-Release:	1
+Version:	2.63
+Release:	%mkrel 1
 License:	GPLv2 or GPLv3
 Group:		System/Servers
 URL:		http://www.thekelleys.org.uk/dnsmasq
 Conflicts:	bind
-Source0:	http://www.thekelleys.org.uk/dnsmasq/%{name}-%{version}.tar.lzma
-BuildRequires:	dbus-devel
+Source0:	http://www.thekelleys.org.uk/dnsmasq/%{name}-%{version}.tar.xz
 Source1:	dnsmasq.sysconfig
 Source2:	dnsmasq.init
-Requires:	%{name}-base = %{version}-%{release}
+Source3:	dnsmasq.service
+Source4:	README.update.urpmi
+
+BuildRequires:		dbus-devel
+
+Requires:		%{name}-base = %{version}-%{release}
 Requires(preun):	rpm-helper
-Requires(post):	rpm-helper
+Requires(post):		rpm-helper
 
 %description
 Dnsmasq is lightweight, easy to configure DNS forwarder and DHCP server. It
@@ -26,7 +30,6 @@ leases and BOOTP for network booting of diskless machines.
 %package	base
 Summary:	A lightweight dhcp and caching nameserver - base files without init scripts
 Group:		Networking/Remote access
-Conflicts:	dnsmasq < 2.45-2mdv
 
 %description	base
 Dnsmasq is lightweight, easy to configure DNS forwarder and DHCP server. It
@@ -53,9 +56,11 @@ sed -i 's|/\* #define HAVE_DBUS \*/|#define HAVE_DBUS|g' src/config.h
 %install
 %__install -m755 %{SOURCE2} -D %{buildroot}%{_initrddir}/%{name}
 %__install -m644 %{SOURCE1} -D %{buildroot}%{_sysconfdir}/sysconfig/%{name}
+%__install -m644 %{SOURCE3} -D %{buildroot}/lib/systemd/system/%{name}.service
 %__install -m644 dnsmasq.conf.example -D %{buildroot}%{_sysconfdir}/dnsmasq.conf
 %__install -m755 -D src/dnsmasq %{buildroot}%{_sbindir}/dnsmasq
 %__install -m644 man/dnsmasq.8 -D %{buildroot}%{_mandir}/man8/dnsmasq.8
+%__install -m644 %{SOURCE4} README.update.urpmi
 
 %post
 %_post_service %{name}
@@ -68,8 +73,12 @@ sed -i 's|/\* #define HAVE_DBUS \*/|#define HAVE_DBUS|g' src/config.h
 %{_initrddir}/%{name}
 %config(noreplace) %{_sysconfdir}/dnsmasq.conf
 %config(noreplace) %{_sysconfdir}/sysconfig/%{name}
+/lib/systemd/system/%{name}.service
+%doc README.update.urpmi
 
 %files base
-%doc CHANGELOG FAQ doc.html setup.html
+%doc CHANGELOG FAQ COPYING COPYING-v3 doc.html setup.html
 %{_sbindir}/%{name}
 %doc %{_mandir}/man8/%{name}*
+
+
