@@ -10,7 +10,7 @@ Source0:	http://www.thekelleys.org.uk/dnsmasq/%{name}-%{version}.tar.xz
 Source1:	dnsmasq.sysconfig
 Source2:	dnsmasq.init
 Source3:	dnsmasq.service
-Source4:	README.update.urpmi
+# Source4:	README.update.urpmi
 
 BuildRequires:		dbus-devel
 
@@ -64,7 +64,7 @@ sed -i 's|/\* #define HAVE_DBUS \*/|#define HAVE_DBUS|g' src/config.h
 
 %post
 %_post_service %{name}
-
+:wq
 %preun
 %_preun_service %{name}
 
