@@ -1,0 +1,5 @@
+dnsmasq-2.63.tar.xz
+dnsmasq.init
+dnsmasq.service
+dnsmasq.sysconfig
+README.update.urpmi

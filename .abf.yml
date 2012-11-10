@@ -1,0 +1,6 @@
+sources:
+  "dnsmasq-2.63.tar.xz:"	2da466c89fc5d2bb3d367e0a1c2a62b25ff787a1
+  "dnsmasq.init:"	41bee70067edca54eec2f758e90ca0e3d9c722aa
+  "dnsmasq.service:"	0ac4127d5863e9bac88ce9f663d885359b723045
+  "dnsmasq.sysconfig:"	270feb045e2c753a97db6fd33b41ad283fd18723
+  "README.update.urpmi:"	8b8c3afbcfd134490358b8e8837727e26f3366ee
