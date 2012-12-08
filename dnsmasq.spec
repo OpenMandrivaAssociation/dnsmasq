@@ -69,7 +69,6 @@ sed -i 's|/\* #define HAVE_DBUS \*/|#define HAVE_DBUS|g' src/config.h
 %_preun_service %{name}
 
 %files
-%defattr(-,root,root)
 %{_initrddir}/%{name}
 %config(noreplace) %{_sysconfdir}/dnsmasq.conf
 %config(noreplace) %{_sysconfdir}/sysconfig/%{name}
@@ -80,5 +79,3 @@ sed -i 's|/\* #define HAVE_DBUS \*/|#define HAVE_DBUS|g' src/config.h
 %doc CHANGELOG FAQ COPYING COPYING-v3 doc.html setup.html
 %{_sbindir}/%{name}
 %doc %{_mandir}/man8/%{name}*
-
-

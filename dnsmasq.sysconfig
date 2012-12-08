@@ -1,0 +1,22 @@
+# use this to pass option to dnsmasq
+OPTIONS=
+
+#--------------------------------------------------#
+# Variable below will be ignored when using systemd, 
+# use config file (/etc/dnsmasq.conf) 
+# or pass complete option (-foo bar) in $OPTIONS
+
+
+# return this host for a mx query ( option -m )
+MAILHOSTNAME=
+
+# use a different file instead of /etc/resolv.conf to find 
+# upstream dns ( option -r )
+RESOLV_CONF=
+
+# file used to store dhcp leases information ( option -l )
+DHCP_LEASE=
+
+# specify the domain of the dhcp server. ( option -s )
+# autodetected with dnsdomainname if none provided
+DOMAIN_SUFFIX=
