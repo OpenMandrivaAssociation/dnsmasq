@@ -1,6 +1,6 @@
 Summary:	A lightweight dhcp and caching nameserver
 Name:		dnsmasq
-Version:	2.63
+Version:	2.65
 Release:	%mkrel 1
 License:	GPLv2 or GPLv3
 Group:		System/Servers
@@ -8,8 +8,7 @@ URL:		http://www.thekelleys.org.uk/dnsmasq
 Conflicts:	bind
 Source0:	http://www.thekelleys.org.uk/dnsmasq/%{name}-%{version}.tar.xz
 Source1:	dnsmasq.sysconfig
-Source2:	dnsmasq.init
-Source3:	dnsmasq.service
+Source2:	dnsmasq.service
 Source4:	README.update.urpmi
 
 BuildRequires:		dbus-devel
@@ -54,9 +53,8 @@ sed -i 's|/\* #define HAVE_DBUS \*/|#define HAVE_DBUS|g' src/config.h
 %make
 
 %install
-%__install -m755 %{SOURCE2} -D %{buildroot}%{_initrddir}/%{name}
 %__install -m644 %{SOURCE1} -D %{buildroot}%{_sysconfdir}/sysconfig/%{name}
-%__install -m644 %{SOURCE3} -D %{buildroot}/lib/systemd/system/%{name}.service
+%__install -m644 %{SOURCE2} -D %{buildroot}/lib/systemd/system/%{name}.service
 %__install -m644 dnsmasq.conf.example -D %{buildroot}%{_sysconfdir}/dnsmasq.conf
 %__install -m755 -D src/dnsmasq %{buildroot}%{_sbindir}/dnsmasq
 %__install -m644 man/dnsmasq.8 -D %{buildroot}%{_mandir}/man8/dnsmasq.8
@@ -69,7 +67,6 @@ sed -i 's|/\* #define HAVE_DBUS \*/|#define HAVE_DBUS|g' src/config.h
 %_preun_service %{name}
 
 %files
-%{_initrddir}/%{name}
 %config(noreplace) %{_sysconfdir}/dnsmasq.conf
 %config(noreplace) %{_sysconfdir}/sysconfig/%{name}
 /lib/systemd/system/%{name}.service
