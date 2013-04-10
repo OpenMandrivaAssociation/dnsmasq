@@ -1,21 +1,19 @@
 Summary:	A lightweight dhcp and caching nameserver
 Name:		dnsmasq
 Version:	2.65
-Release:	%mkrel 1
+Release:	1
 License:	GPLv2 or GPLv3
 Group:		System/Servers
-URL:		http://www.thekelleys.org.uk/dnsmasq
-Conflicts:	bind
+Url:		http://www.thekelleys.org.uk/dnsmasq
 Source0:	http://www.thekelleys.org.uk/dnsmasq/%{name}-%{version}.tar.xz
 Source1:	dnsmasq.sysconfig
 Source2:	dnsmasq.service
 Source4:	README.update.urpmi
 
-BuildRequires:		dbus-devel
-
-Requires:		%{name}-base = %{version}-%{release}
-Requires(preun):	rpm-helper
-Requires(post):		rpm-helper
+BuildRequires:	pkgconfig(dbus-1)
+Requires:	%{name}-base = %{version}-%{release}
+Requires(preun,post):	rpm-helper
+Conflicts:	bind
 
 %description
 Dnsmasq is lightweight, easy to configure DNS forwarder and DHCP server. It
@@ -53,12 +51,12 @@ sed -i 's|/\* #define HAVE_DBUS \*/|#define HAVE_DBUS|g' src/config.h
 %make
 
 %install
-%__install -m644 %{SOURCE1} -D %{buildroot}%{_sysconfdir}/sysconfig/%{name}
-%__install -m644 %{SOURCE2} -D %{buildroot}/lib/systemd/system/%{name}.service
-%__install -m644 dnsmasq.conf.example -D %{buildroot}%{_sysconfdir}/dnsmasq.conf
-%__install -m755 -D src/dnsmasq %{buildroot}%{_sbindir}/dnsmasq
-%__install -m644 man/dnsmasq.8 -D %{buildroot}%{_mandir}/man8/dnsmasq.8
-%__install -m644 %{SOURCE4} README.update.urpmi
+install -m644 %{SOURCE1} -D %{buildroot}%{_sysconfdir}/sysconfig/%{name}
+install -m644 %{SOURCE2} -D %{buildroot}/lib/systemd/system/%{name}.service
+install -m644 dnsmasq.conf.example -D %{buildroot}%{_sysconfdir}/dnsmasq.conf
+install -m755 -D src/dnsmasq %{buildroot}%{_sbindir}/dnsmasq
+install -m644 man/dnsmasq.8 -D %{buildroot}%{_mandir}/man8/dnsmasq.8
+install -m644 %{SOURCE4} README.update.urpmi
 
 %post
 %_post_service %{name}
@@ -76,3 +74,4 @@ sed -i 's|/\* #define HAVE_DBUS \*/|#define HAVE_DBUS|g' src/config.h
 %doc CHANGELOG FAQ COPYING COPYING-v3 doc.html setup.html
 %{_sbindir}/%{name}
 %doc %{_mandir}/man8/%{name}*
+
