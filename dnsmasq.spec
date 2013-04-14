@@ -1,3 +1,4 @@
+%define debug_package %{nil}
 Summary:	A lightweight dhcp and caching nameserver
 Name:		dnsmasq
 Version:	2.65
