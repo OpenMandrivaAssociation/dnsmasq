@@ -1,7 +1,7 @@
 %define debug_package %{nil}
 Summary:	A lightweight dhcp and caching nameserver
 Name:		dnsmasq
-Version:	2.66
+Version:	2.67
 Release:	1
 License:	GPLv2 or GPLv3
 Group:		System/Servers
