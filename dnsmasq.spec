@@ -2,7 +2,7 @@
 Summary:	A lightweight dhcp and caching nameserver
 Name:		dnsmasq
 Version:	2.68
-Release:	1
+Release:	2
 License:	GPLv2 or GPLv3
 Group:		System/Servers
 Url:		http://www.thekelleys.org.uk/dnsmasq
@@ -12,6 +12,7 @@ Source2:	dnsmasq.service
 Source4:	README.update.urpmi
 
 BuildRequires:	pkgconfig(dbus-1)
+BuildRequires:	pkgconfig(libidn)
 Requires:	%{name}-base = %{version}-%{release}
 Requires(preun,post):	rpm-helper
 Conflicts:	bind
@@ -47,6 +48,19 @@ scripts and global configuration files.
 %build
 #(tpg) enable dbus support
 sed -i 's|/\* #define HAVE_DBUS \*/|#define HAVE_DBUS|g' src/config.h
+
+# fedya
+# use /var/lib/dnsmasq instead of /var/lib/misc
+for file in dnsmasq.conf.example man/dnsmasq.8 man/es/dnsmasq.8 src/config.h; do
+    sed -i 's|/var/lib/misc/dnsmasq.leases|/var/lib/dnsmasq/dnsmasq.leases|g' "$file"
+done
+
+#enable IDN support
+sed -i 's|/\* #define HAVE_IDN \*/|#define HAVE_IDN|g' src/config.h
+
+# RH bugzilla
+#enable /etc/dnsmasq.d fix bz 526703
+sed -i 's|#conf-dir=/etc/dnsmasq.d|conf-dir=/etc/dnsmasq.d|g' dnsmasq.conf.example
 
 %serverbuild
 %make
