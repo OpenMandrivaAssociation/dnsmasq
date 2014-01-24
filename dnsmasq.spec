@@ -58,6 +58,7 @@ install -m644 dnsmasq.conf.example -D %{buildroot}%{_sysconfdir}/dnsmasq.conf
 install -m755 -D src/dnsmasq %{buildroot}%{_sbindir}/dnsmasq
 install -m644 man/dnsmasq.8 -D %{buildroot}%{_mandir}/man8/dnsmasq.8
 install -m644 %{SOURCE4} README.update.urpmi
+install -d %{buildroot}/%{_sysconfdir}/dnsmasq.d/
 
 %post
 %_post_service %{name}
@@ -68,6 +69,7 @@ install -m644 %{SOURCE4} README.update.urpmi
 %files
 %config(noreplace) %{_sysconfdir}/dnsmasq.conf
 %config(noreplace) %{_sysconfdir}/sysconfig/%{name}
+%dir %{_sysconfdir}/dnsmasq.d/
 /lib/systemd/system/%{name}.service
 %doc README.update.urpmi
 
@@ -75,4 +77,3 @@ install -m644 %{SOURCE4} README.update.urpmi
 %doc CHANGELOG FAQ COPYING COPYING-v3 doc.html setup.html
 %{_sbindir}/%{name}
 %doc %{_mandir}/man8/%{name}*
-
