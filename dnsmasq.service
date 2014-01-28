@@ -1,12 +1,9 @@
 [Unit]
-Description=A lightweight dhcp and caching nameserver
+Description=DNS caching server.
 After=syslog.target network.target
 
 [Service]
-Type=forking
-PIDFile=/var/run/dnsmasq.pid
-EnvironmentFile=-/etc/sysconfig/dnsmasq
-ExecStart=/usr/sbin/dnsmasq $OPTIONS
+ExecStart=/usr/sbin/dnsmasq -k
 
 [Install]
 WantedBy=multi-user.target

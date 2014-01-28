@@ -73,6 +73,7 @@ install -m755 -D src/dnsmasq %{buildroot}%{_sbindir}/dnsmasq
 install -m644 man/dnsmasq.8 -D %{buildroot}%{_mandir}/man8/dnsmasq.8
 install -m644 %{SOURCE4} README.update.urpmi
 install -d %{buildroot}/%{_sysconfdir}/dnsmasq.d/
+install -d %{buildroot}/var/lib/%{name}/
 
 %post
 %_post_service %{name}
@@ -84,6 +85,7 @@ install -d %{buildroot}/%{_sysconfdir}/dnsmasq.d/
 %config(noreplace) %{_sysconfdir}/dnsmasq.conf
 %config(noreplace) %{_sysconfdir}/sysconfig/%{name}
 %dir %{_sysconfdir}/dnsmasq.d/
+%dir /var/lib/%{name}
 /lib/systemd/system/%{name}.service
 %doc README.update.urpmi
 
