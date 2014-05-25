@@ -1,7 +1,7 @@
-%define debug_package %{nil}
+#% define debug_package %{nil}
 Summary:	A lightweight dhcp and caching nameserver
 Name:		dnsmasq
-Version:	2.69
+Version:	2.71
 Release:	1
 License:	GPLv2 or GPLv3
 Group:		System/Servers
@@ -46,6 +46,9 @@ scripts and global configuration files.
 %setup -q
 
 %build
+#fedya
+sed -i -r 's:lua5.[0-9]+:lua:' Makefile
+
 #(tpg) enable dbus support
 sed -i 's|/\* #define HAVE_DBUS \*/|#define HAVE_DBUS|g' src/config.h
 
@@ -63,7 +66,7 @@ sed -i 's|/\* #define HAVE_IDN \*/|#define HAVE_IDN|g' src/config.h
 sed -i 's|#conf-dir=/etc/dnsmasq.d|conf-dir=/etc/dnsmasq.d|g' dnsmasq.conf.example
 
 %serverbuild
-%make
+%make CFLAGS="%{optflags}" LDFLAGS="$RPM_LD_FLAGS"
 
 %install
 install -m644 %{SOURCE1} -D %{buildroot}%{_sysconfdir}/sysconfig/%{name}
