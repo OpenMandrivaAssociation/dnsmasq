@@ -87,6 +87,10 @@ install -d %{buildroot}/var/lib/%{name}/
 %preun
 %_preun_service %{name}
 
+%postun
+%_postun_userdel %{name}
+%_postun_groupdel %{name} %{name}
+
 %files
 %config(noreplace) %{_sysconfdir}/dnsmasq.conf
 %config(noreplace) %{_sysconfdir}/sysconfig/%{name}
