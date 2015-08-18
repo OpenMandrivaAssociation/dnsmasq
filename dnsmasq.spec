@@ -1,8 +1,8 @@
 #% define debug_package %{nil}
 Summary:	A lightweight dhcp and caching nameserver
 Name:		dnsmasq
-Version:	2.72
-Release:	3
+Version:	2.75
+Release:	1
 License:	GPLv2 or GPLv3
 Group:		System/Servers
 Url:		http://www.thekelleys.org.uk/dnsmasq
@@ -78,6 +78,9 @@ install -m644 %{SOURCE4} README.update.urpmi
 install -d %{buildroot}/%{_sysconfdir}/dnsmasq.d/
 install -d %{buildroot}/var/lib/%{name}/
 
+%pre
+%_pre_useradd %{name} /sbin/nologin
+%_pre_groupadd %{name} %{name}
 %post
 %_post_service %{name}
 
