@@ -1,4 +1,2 @@
-removed_sources:
-  dnsmasq-2.65.tar.xz: ccbe4845c316cd208b53e63d6ede97bbf0587c12
 sources:
-  dnsmasq-2.66.tar.xz: 6743600d33e4980750f24a1897154218705af5f0
+  dnsmasq-2.75.tar.xz: e3312377f2ce75ebae1408fee41414a6fc03458f
