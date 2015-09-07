@@ -65,7 +65,7 @@ sed -i 's|/\* #define HAVE_IDN \*/|#define HAVE_IDN|g' src/config.h
 sed -i 's|#conf-dir=/etc/dnsmasq.d|conf-dir=/etc/dnsmasq.d|g' dnsmasq.conf.example
 
 %serverbuild
-%make CC=%{__cc} CFLAGS="%{optflags}" LDFLAGS="$RPM_LD_FLAGS"
+%make CC=%{__cc} CFLAGS="%{optflags}" LDFLAGS="%ldflags"
 
 %install
 install -m644 %{SOURCE1} -D %{buildroot}%{_sysconfdir}/sysconfig/%{name}
