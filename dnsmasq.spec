@@ -1,7 +1,7 @@
 Summary:	A lightweight dhcp and caching nameserver
 Name:		dnsmasq
-Version:	2.75
-Release:	4
+Version:	2.76
+Release:	1
 License:	GPLv2 or GPLv3
 Group:		System/Servers
 Url:		http://www.thekelleys.org.uk/dnsmasq
@@ -9,6 +9,7 @@ Source0:	http://www.thekelleys.org.uk/dnsmasq/%{name}-%{version}.tar.xz
 Source1:	dnsmasq.sysconfig
 Source2:	dnsmasq.service
 Source4:	README.update.urpmi
+Patch0:		dnsmasq-2.76-handle-binding-upstream-servers-to-an-interface.patch
 
 BuildRequires:	pkgconfig(dbus-1)
 BuildRequires:	pkgconfig(libidn)
@@ -43,6 +44,7 @@ scripts and global configuration files.
 
 %prep
 %setup -q
+%apply_patches
 
 %build
 #fedya
