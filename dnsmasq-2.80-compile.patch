@@ -1,0 +1,11 @@
+diff -up dnsmasq-2.80/src/dhcp.c.omv~ dnsmasq-2.80/src/dhcp.c
+--- dnsmasq-2.80/src/dhcp.c.omv~	2019-07-31 21:38:58.257918854 +0200
++++ dnsmasq-2.80/src/dhcp.c	2019-07-31 21:39:17.902813351 +0200
+@@ -15,6 +15,7 @@
+ */
+ 
+ #include "dnsmasq.h"
++#include <linux/sockios.h>
+ 
+ #ifdef HAVE_DHCP
+ 

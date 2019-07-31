@@ -1,7 +1,7 @@
 Summary:	A lightweight dhcp and caching nameserver
 Name:		dnsmasq
 Version:	2.80
-Release:	1
+Release:	2
 License:	GPLv2 or GPLv3
 Group:		System/Servers
 Url:		http://www.thekelleys.org.uk/dnsmasq
@@ -9,9 +9,11 @@ Source0:	http://www.thekelleys.org.uk/dnsmasq/%{name}-%{version}.tar.xz
 Source1:	dnsmasq.sysconfig
 Source2:	dnsmasq.service
 Source4:	README.update.urpmi
+Patch0:		dnsmasq-2.80-compile.patch
 
 BuildRequires:	pkgconfig(dbus-1)
 BuildRequires:	pkgconfig(libidn)
+BuildRequires:	rpm-helper
 Requires:	%{name}-base = %{version}-%{release}
 Requires(preun,post):	rpm-helper
 Conflicts:	bind
@@ -42,8 +44,7 @@ This package contains the base files of the Dnsmasq server, without the init
 scripts and global configuration files.
 
 %prep
-%setup -q
-%apply_patches
+%autosetup -p1
 
 %build
 #fedya
