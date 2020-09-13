@@ -8,7 +8,6 @@ Url:		http://www.thekelleys.org.uk/dnsmasq
 Source0:	http://www.thekelleys.org.uk/dnsmasq/%{name}-%{version}.tar.xz
 Source1:	dnsmasq.sysconfig
 Source2:	dnsmasq.service
-Source4:	README.update.urpmi
 Patch0:		dnsmasq-2.80-compile.patch
 
 BuildRequires:	pkgconfig(dbus-1)
@@ -75,7 +74,6 @@ install -m644 %{SOURCE2} -D %{buildroot}/lib/systemd/system/%{name}.service
 install -m644 dnsmasq.conf.example -D %{buildroot}%{_sysconfdir}/dnsmasq.conf
 install -m755 -D src/dnsmasq %{buildroot}%{_sbindir}/dnsmasq
 install -m644 man/dnsmasq.8 -D %{buildroot}%{_mandir}/man8/dnsmasq.8
-install -m644 %{SOURCE4} README.update.urpmi
 install -d %{buildroot}/%{_sysconfdir}/dnsmasq.d/
 install -d %{buildroot}/var/lib/%{name}/
 
@@ -98,7 +96,6 @@ install -d %{buildroot}/var/lib/%{name}/
 %dir %{_sysconfdir}/dnsmasq.d/
 %dir /var/lib/%{name}
 /lib/systemd/system/%{name}.service
-%doc README.update.urpmi
 
 %files base
 %doc CHANGELOG FAQ COPYING COPYING-v3 doc.html setup.html
