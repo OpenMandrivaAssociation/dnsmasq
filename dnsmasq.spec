@@ -4,7 +4,7 @@ Version:	2.90
 Release:	1
 License:	GPLv2 or GPLv3
 Group:		System/Servers
-Url:		http://www.thekelleys.org.uk/dnsmasq
+Url:		https://www.thekelleys.org.uk/dnsmasq
 Source0:	http://www.thekelleys.org.uk/dnsmasq/%{name}-%{version}.tar.xz
 Source1:	dnsmasq.sysconfig
 Source2:	dnsmasq.service
