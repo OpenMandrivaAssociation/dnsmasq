@@ -1,7 +1,7 @@
 Summary:	A lightweight dhcp and caching nameserver
 Name:		dnsmasq
 Version:	2.91
-Release:	1
+Release:	2
 License:	GPLv2 or GPLv3
 Group:		System/Servers
 Url:		https://www.thekelleys.org.uk/dnsmasq
@@ -12,9 +12,7 @@ Patch0:		dnsmasq-2.80-compile.patch
 
 BuildRequires:	pkgconfig(dbus-1)
 BuildRequires:	pkgconfig(libidn)
-BuildRequires:	rpm-helper
 Requires:	%{name}-base = %{version}-%{release}
-Requires(preun,post):	rpm-helper
 Conflicts:	bind
 
 %description
@@ -76,19 +74,10 @@ install -m755 -D src/dnsmasq %{buildroot}%{_sbindir}/dnsmasq
 install -m644 man/dnsmasq.8 -D %{buildroot}%{_mandir}/man8/dnsmasq.8
 install -d %{buildroot}/%{_sysconfdir}/dnsmasq.d/
 install -d %{buildroot}/var/lib/%{name}/
-
-%pre
-%_pre_useradd %{name} /dev/null /sbin/nologin
-%_pre_groupadd %{name} %{name}
-%post
-%_post_service %{name}
-
-%preun
-%_preun_service %{name}
-
-%postun
-%_postun_userdel %{name}
-%_postun_groupdel %{name} %{name}
+mkdir -p %{buildroot}%{_sysusersdir}
+cat >%{buildroot}%{_sysusersdir}/%{name}.conf <<'EOF'
+u %{name} - "DNSMasq" / /sbin/nologin
+EOF
 
 %files
 %config(noreplace) %{_sysconfdir}/dnsmasq.conf
@@ -101,3 +90,4 @@ install -d %{buildroot}/var/lib/%{name}/
 %doc CHANGELOG FAQ COPYING COPYING-v3 doc.html setup.html
 %{_sbindir}/%{name}
 %doc %{_mandir}/man8/%{name}*
+%{_sysusersdir}/%{name}.conf
