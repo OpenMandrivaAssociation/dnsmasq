@@ -10,6 +10,7 @@ Source1:	dnsmasq.sysconfig
 Source2:	dnsmasq.service
 Patch0:		dnsmasq-2.80-compile.patch
 
+BuildRequires:	make
 BuildRequires:	pkgconfig(dbus-1)
 BuildRequires:	pkgconfig(libidn)
 Requires:	%{name}-base = %{version}-%{release}
