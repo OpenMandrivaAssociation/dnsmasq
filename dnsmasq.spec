@@ -1,7 +1,7 @@
 Summary:	A lightweight dhcp and caching nameserver
 Name:		dnsmasq
-Version:	2.91
-Release:	2
+Version:	2.93
+Release:	1
 License:	GPLv2 or GPLv3
 Group:		System/Servers
 Url:		https://www.thekelleys.org.uk/dnsmasq
